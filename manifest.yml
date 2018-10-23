@@ -1,0 +1,10 @@
+applications:
+- name: movie-fun-app
+  path: applications/movie-fun-app/build/libs/movie-fun-app.war
+  routes:
+  - route: moviefun-graham-arun.apps.evans.pal.pivotal.io
+  memory: 1G
+  instances: 1
+  services:
+  - movies-mysql
+  - moviefun-s3
