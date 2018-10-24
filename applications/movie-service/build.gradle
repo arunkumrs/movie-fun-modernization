@@ -1,0 +1,15 @@
+apply from: "../../java.gradle"
+apply plugin: "org.springframework.boot"
+
+group = "org.superbiz"
+description = "OpenEJB :: Web Examples :: MovieService"
+
+dependencies{
+    compile project(":components:movies")
+    compile project(":components:utils")
+    
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-tomcat"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile "mysql:mysql-connector-java:$mysqlVersion"
+}

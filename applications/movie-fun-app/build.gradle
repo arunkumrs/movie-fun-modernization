@@ -7,23 +7,19 @@ group = "org.superbiz"
 description = "OpenEJB :: Web Examples :: Moviefun"
 
 dependencies {
-    compile project(":components:movies")
+    compile project(":components:utils")
     compile project(":components:albums")
-    compile project(":components:blobstore")
-    compile "taglibs:standard:1.1.2"
+    compile project(":components:movie-fun-api")
+
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-tomcat"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
-    compile "mysql:mysql-connector-java:5.1.40"
-    
-    compile "commons-lang:commons-lang:$commonsVersion"
-    
 
+    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.7.0"
+    compile "taglibs:standard:1.1.2"
     compile "javax.servlet:jstl:1.2"
-    compile "org.apache.tomee:javaee-api:7.0"
-    compile "org.apache.tomcat.embed:tomcat-embed-jasper:8.5.6"
-    compile "org.apache.geronimo.specs:geronimo-osgi-locator:1.1"
-    compile "org.apache.geronimo.components:geronimo-jaspi:2.0.0"
 
-    testCompile "junit:junit:4.12"
+    compile "org.apache.tomcat.embed:tomcat-embed-jasper:8.5.6"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile "mysql:mysql-connector-java:$mysqlVersion"
+
 }

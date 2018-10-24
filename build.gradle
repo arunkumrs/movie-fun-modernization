@@ -5,6 +5,8 @@ buildscript {
         springVersion = "4.3.18.RELEASE"
         hibernateVersion = "5.0.12.Final"
         commonsVersion = "2.4"
+        mysqlVersion= "5.1.40"
+        slf4jVersion = "1.7.25"
     }
 
     repositories {

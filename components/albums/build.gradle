@@ -2,8 +2,9 @@ apply from: "../../java.gradle"
 
 dependencies {
     compile project(":components:blobstore")
+    compile project(":components:utils")
     
-    compile "org.slf4j:slf4j-api:1.7.25"
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
     compile "commons-lang:commons-lang:$commonsVersion"
     compile "org.springframework:spring-tx:$springVersion"
     compile "org.springframework:spring-web:$springVersion"

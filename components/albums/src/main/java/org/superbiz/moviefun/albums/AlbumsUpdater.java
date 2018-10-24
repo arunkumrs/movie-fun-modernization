@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.superbiz.moviefun.blobstore.Blob;
 import org.superbiz.moviefun.blobstore.BlobStore;
+import org.superbiz.moviefun.utils.CsvUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,7 +16,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import static com.fasterxml.jackson.dataformat.csv.CsvSchema.ColumnType;
-import static org.superbiz.moviefun.albums.CsvUtils.readFromCsv;
 
 @Service
 public class AlbumsUpdater {

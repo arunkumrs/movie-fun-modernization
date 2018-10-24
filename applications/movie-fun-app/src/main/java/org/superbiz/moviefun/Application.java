@@ -10,7 +10,8 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.superbiz.moviefun.blobstore.BlobStore;
 import org.superbiz.moviefun.blobstore.S3Store;
-import org.superbiz.moviefun.movies.MoviesServlet;
+import org.superbiz.moviefun.moviesapi.MoviesServlet;
+import org.superbiz.moviefun.utils.ServiceCredentials;
 
 @SpringBootApplication
 public class Application {
