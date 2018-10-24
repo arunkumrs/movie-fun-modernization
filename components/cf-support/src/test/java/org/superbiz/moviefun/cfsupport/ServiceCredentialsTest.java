@@ -1,4 +1,4 @@
-package org.superbiz.moviefun.utils;
+package org.superbiz.moviefun.cfsupport;
 
 import org.junit.Test;
 

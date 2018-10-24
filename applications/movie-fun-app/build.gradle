@@ -7,7 +7,7 @@ group = "org.superbiz"
 description = "OpenEJB :: Web Examples :: Moviefun"
 
 dependencies {
-    compile project(":components:utils")
+    compile project(":components:cf-support")
     compile project(":components:albums")
     compile project(":components:movie-fun-api")
 

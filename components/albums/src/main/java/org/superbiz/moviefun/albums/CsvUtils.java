@@ -1,4 +1,4 @@
-package org.superbiz.moviefun.utils;
+package org.superbiz.moviefun.albums;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectReader;

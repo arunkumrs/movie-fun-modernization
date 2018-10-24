@@ -1,8 +1,7 @@
-package org.superbiz.moviefun.utils;
+package org.superbiz.moviefun.cfsupport;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;

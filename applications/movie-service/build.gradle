@@ -6,7 +6,7 @@ description = "OpenEJB :: Web Examples :: MovieService"
 
 dependencies{
     compile project(":components:movies")
-    compile project(":components:utils")
+    compile project(":components:cf-support")
     
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-tomcat"
