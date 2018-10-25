@@ -5,13 +5,17 @@ spring:
     properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
 
   datasource:
-    url: jdbc:mysql://localhost:3306/movies?useSSL=false
+    url: jdbc:mysql://localhost:3306/albums?useSSL=false
     username: root
     tomcat:
       max-active: 4
       max-idle: 4
       min-idle: 4
       initial-size: 4
+
+security:
+  basic:
+    enabled: false
 
 logging.level:
   root: WARN

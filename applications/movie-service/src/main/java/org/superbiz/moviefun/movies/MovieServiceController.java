@@ -40,7 +40,7 @@ public class MovieServiceController {
     }
 
     @GetMapping(params = {"start", "pageSize"})
-    public ResponseEntity<List<Movie>> findAll(@RequestParam int start, @RequestParam int pageSize){
+    public ResponseEntity<List<Movie>> findAll(@RequestParam("start") int start, @RequestParam("pageSize") int pageSize){
         return new ResponseEntity<>(moviesBean.findAll(start, pageSize), HttpStatus.OK);
     }
 
@@ -55,12 +55,12 @@ public class MovieServiceController {
     }
 
     @GetMapping(params = {"field", "key", "start", "pageSize"})
-    public ResponseEntity<List<Movie>> findRange(@RequestParam String field, @RequestParam String key, @RequestParam int start, @RequestParam int pageSize){
+    public ResponseEntity<List<Movie>> findRange(@RequestParam("field") String field, @RequestParam("key") String key, @RequestParam("start") int start, @RequestParam("pageSize") int pageSize){
         return new ResponseEntity<>(moviesBean.findRange(field, key, start, pageSize), HttpStatus.OK);
     }
 
     @PutMapping
-    public void updateMovie(Movie movie){
+    public void updateMovie(@RequestBody Movie movie){
         moviesBean.updateMovie(movie);
     }
 

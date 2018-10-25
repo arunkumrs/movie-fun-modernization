@@ -20,10 +20,6 @@ public class ClientConfiguration {
     @Value("${movies.url}") String moviesUrl;
 
     @Value("${albums.url}") String albumsUrl;
-    @Bean
-    public RestOperations restOperations() {
-        return new RestTemplate();
-    }
 
     @Bean
     public MoviesClient moviesClient(RestOperations restOperations) {
