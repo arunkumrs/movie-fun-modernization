@@ -6,14 +6,14 @@ applications:
   routes:
   - route: album-service-graham-arun.apps.evans.pal.pivotal.io
   services:
-  - albums-database
+  - album-database
   - moviefun-s3
 - name: movie-service
   path: applications/movie-service/build/libs/movie-service.jar
   routes:
   - route: movie-service-graham-arun.apps.evans.pal.pivotal.io
   services:
-  - movies-database
+  - movie-database
 - name: movie-fun-app
   path: applications/movie-fun-app/build/libs/movie-fun-app.war
   routes:
