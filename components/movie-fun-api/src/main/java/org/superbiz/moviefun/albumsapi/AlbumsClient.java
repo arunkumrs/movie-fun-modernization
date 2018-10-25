@@ -62,7 +62,7 @@ public class AlbumsClient {
     }
 
     public AlbumInfo find(long id) {
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(albumsUrl)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(albumsUrl)
                 .queryParam("id", id);
         return restOperations.exchange(builder.toUriString(), HttpMethod.GET, null, AlbumInfo.class).getBody();
 
