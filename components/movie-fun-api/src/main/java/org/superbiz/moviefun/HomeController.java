@@ -1,5 +1,4 @@
-/*
-package org.superbiz.moviefun.albums;
+package org.superbiz.moviefun;
 
 import org.apache.tika.io.IOUtils;
 import org.slf4j.Logger;
@@ -8,10 +7,19 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.superbiz.moviefun.albumsapi.AlbumFixtures;
+import org.superbiz.moviefun.albumsapi.AlbumInfo;
+import org.superbiz.moviefun.albumsapi.AlbumsClient;
 import org.superbiz.moviefun.blobstore.Blob;
 import org.superbiz.moviefun.blobstore.BlobStore;
+import org.superbiz.moviefun.moviesapi.MovieFixtures;
+import org.superbiz.moviefun.moviesapi.MovieInfo;
+import org.superbiz.moviefun.moviesapi.MoviesClient;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,35 +28,60 @@ import java.util.Map;
 import java.util.Optional;
 
 import static java.lang.String.format;
-import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 
 @Controller
-@RequestMapping("/albums")
-public class AlbumsController {
+public class HomeController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private final AlbumsBean albumsBean;
+
+    private final AlbumsClient albumsClient;
+    private final AlbumFixtures albumFixtures;
+    private final MoviesClient moviesClient;
+    private final MovieFixtures movieFixtures;
     private final BlobStore blobStore;
 
-    public AlbumsController(AlbumsBean albumsBean, BlobStore blobStore) {
-        this.albumsBean = albumsBean;
+    public HomeController(AlbumsClient albumsClient, AlbumFixtures albumFixtures, MoviesClient moviesClient, MovieFixtures movieFixtures, BlobStore blobStore) {
+        this.albumsClient = albumsClient;
+        this.albumFixtures = albumFixtures;
+        this.moviesClient = moviesClient;
+        this.movieFixtures = movieFixtures;
         this.blobStore = blobStore;
     }
 
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/setup")
+    public String setup(Map<String, Object> model) {
+        for (MovieInfo movie : movieFixtures.load()) {
+            moviesClient.addMovie(movie);
+        }
+
+        for (AlbumInfo album : albumFixtures.load()) {
+            albumsClient.addAlbum(album);
+        }
+
+        model.put("movies", moviesClient.getMovies());
+        model.put("albums", albumsClient.getAlbums());
+
+        return "setup";
+    }
 
     @GetMapping
     public String index(Map<String, Object> model) {
-        model.put("albums", albumsBean.getAlbums());
+        model.put("albums", albumsClient.getAlbums());
         return "albums";
     }
 
-    @GetMapping("/{albumId}")
+    @GetMapping("/albums/{albumId}")
     public String details(@PathVariable long albumId, Map<String, Object> model) {
-        model.put("album", albumsBean.find(albumId));
+        model.put("album", albumsClient.find(albumId));
         return "albumDetails";
     }
 
-    @PostMapping("/{albumId}/cover")
+    @PostMapping("/albums/{albumId}/cover")
     public String uploadCover(@PathVariable Long albumId, @RequestParam("file") MultipartFile uploadedFile) {
         logger.debug("Uploading cover for album with id {}", albumId);
 
@@ -64,7 +97,7 @@ public class AlbumsController {
         return format("redirect:/albums/%d", albumId);
     }
 
-    @GetMapping("/{albumId}/cover")
+    @GetMapping("/albums/{albumId}/cover")
     public HttpEntity<byte[]> getCover(@PathVariable long albumId) throws IOException, URISyntaxException {
         Optional<Blob> maybeCoverBlob = blobStore.get(getCoverBlobName(albumId));
         Blob coverBlob = maybeCoverBlob.orElseGet(this::buildDefaultCoverBlob);
@@ -81,9 +114,9 @@ public class AlbumsController {
 
     private void tryToUploadCover(@PathVariable Long albumId, @RequestParam("file") MultipartFile uploadedFile) throws IOException {
         Blob coverBlob = new Blob(
-            getCoverBlobName(albumId),
-            uploadedFile.getInputStream(),
-            uploadedFile.getContentType()
+                getCoverBlobName(albumId),
+                uploadedFile.getInputStream(),
+                uploadedFile.getContentType()
         );
 
         blobStore.put(coverBlob);
@@ -100,4 +133,3 @@ public class AlbumsController {
         return format("covers/%d", albumId);
     }
 }
-*/

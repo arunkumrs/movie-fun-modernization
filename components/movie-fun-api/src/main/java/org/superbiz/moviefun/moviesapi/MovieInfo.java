@@ -7,8 +7,6 @@ import java.util.Objects;
 
 public class MovieInfo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String director;

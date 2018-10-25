@@ -3,6 +3,7 @@ package org.superbiz.moviefun.moviesapi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -10,7 +11,7 @@ import static org.springframework.http.HttpMethod.GET;
 
 import java.util.List;
 
-
+@Component
 public class MoviesClient {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
